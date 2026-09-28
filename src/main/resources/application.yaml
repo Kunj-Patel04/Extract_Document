@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: kyc-document-extractor
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  # Disables JPA/Datasource to avoid crashes if no database is connected
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+
+gemini:
+  api:
+    key: ${GEMINI_API_KEY}
+    model: ${GEMINI_API_MODEL:gemini-3.8 -flash}
+
+rapidapi:
+  proxy:
+    secret: ${RAPIDAPI_PROXY_SECRET}
