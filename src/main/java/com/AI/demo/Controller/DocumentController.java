@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/document")
+@CrossOrigin(origins = "*") // ADD THIS LINE to allow browser requests from React
 public class DocumentController {
 
     private final GeminiService geminiService;
