@@ -23,16 +23,9 @@ public class DocumentController {
         this.geminiService = geminiService;
     }
 
-    @PostMapping(value = "/extract", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)    public ResponseEntity<String> extractDetails(
-            @RequestHeader(value = "X-RapidAPI-Proxy-Secret", required = false) String incomingSecret,
-            @RequestPart("file") MultipartFile file) {
-
-        // Validate that request originated exclusively from RapidAPI
-        if (expectedProxySecret == null || !expectedProxySecret.equals(incomingSecret)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN)
-                    .body("{\"error\": \"Unauthorized: Direct calls not permitted.\"}");
-        }
-
+    @PostMapping(value = "/extract")
+    public ResponseEntity<String> extractDetails(
+            @ModelAttribute("file") MultipartFile file) {
         if (file.isEmpty()) {
             return ResponseEntity.badRequest().body("{\"error\": \"No file uploaded.\"}");
         }
@@ -41,7 +34,7 @@ public class DocumentController {
             String result = geminiService.extractInformation(file);
             return ResponseEntity.ok(result);
         } catch (Exception e) {
-            return ResponseEntity.internalServerError().body("Failed to process document: " + e.getMessage());
+                return ResponseEntity.internalServerError().body("Failed to process document: " + e.getMessage());
         }
     }
 

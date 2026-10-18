@@ -14,7 +14,7 @@ spring:
 gemini:
   api:
     key: ${GEMINI_API_KEY}
-    model: ${GEMINI_API_MODEL:gemini-3.8 -flash}
+    model: gemini-3.8-flash
 
 rapidapi:
   proxy:
