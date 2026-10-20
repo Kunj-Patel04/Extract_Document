@@ -6,12 +6,18 @@ WORKDIR /app
 COPY pom.xml .
 COPY .mvn .mvn
 COPY mvnw .
+
+# Add execution permissions to the Maven wrapper
+RUN chmod +x ./mvnw
+
+# Download dependencies
 RUN ./mvnw dependency:go-offline -B
 
 # Copy source code and package jar (skip tests for faster build)
 COPY src ./src
 RUN ./mvnw clean package -DskipTests
 
+# ... (Keep the rest of your Step 2 Dockerfile exactly the same) ...
 # Step 2: Run the application
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
