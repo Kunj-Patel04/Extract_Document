@@ -16,8 +16,8 @@ public class DocumentController {
 
     private final GeminiService geminiService;
 
-    @Value("${rapidapi.proxy.secret}")
-    private String expectedProxySecret;
+//    @Value("${rapidapi.proxy.secret}")
+//    private String expectedProxySecret;
 
     public DocumentController(GeminiService geminiService) {
         this.geminiService = geminiService;

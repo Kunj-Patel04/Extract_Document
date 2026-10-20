@@ -16,6 +16,6 @@ gemini:
     key: ${GEMINI_API_KEY}
     model: gemini-3.8-flash
 
-rapidapi:
-  proxy:
-    secret: ${RAPIDAPI_PROXY_SECRET}
+#rapidapi:
+#  proxy:
+#    secret: ${RAPIDAPI_PROXY_SECRET}
